@@ -1,0 +1,29 @@
+@import url('./modules/_normalize.css');
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+
+body {
+  background: #fff;
+  color: #24292e;
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.home {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url('../img/home.jpg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center;
+  background-size: cover;
+}
