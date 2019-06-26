@@ -1,0 +1,38 @@
+$crimson: crimson;
+
+.error {
+    border-color: $crimson !important;
+}
+
+.danger {
+    color: $crimson;
+    font-size: 12px;
+}
+
+.error-text {
+    color: $crimson;
+    text-align: left;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.alert-form {
+    background-color: rgba($color: $crimson, $alpha: 0.2);
+    border: 1px solid rgba($color: $crimson, $alpha: 0.6);
+    border-radius: 4px;
+    font-weight: 400;
+    color: rgba($color: #000000, $alpha: 0.7);
+    text-align: left;
+    padding: 0 1em;
+    animation: shiv 2000ms;
+}
+
+@keyframes shiv {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
