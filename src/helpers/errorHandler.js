@@ -1,5 +1,3 @@
-import errorResponse from './errorResponse';
-
 /**
  * Handle HTTP errors
  * @function errorHandler
@@ -13,7 +11,7 @@ const errorHandler = (err) => {
 
     if (err.response) {
         error.status = err.response.status;
-        error.response = errorResponse(err);
+        error.response = err.response.data.errors;
     } else if (err.request) {
         error = err.request;
     } else {

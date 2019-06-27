@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import SignupForm from '../shared/Form/SignupForm';
+import LoginForm from '../shared/Form/LoginForm';
 
 
 class Auth extends Component {
@@ -26,7 +27,7 @@ class Auth extends Component {
         case 'signup':
             return <SignupForm />;
         default:
-            return;
+            return <LoginForm />;
         }
     }
 

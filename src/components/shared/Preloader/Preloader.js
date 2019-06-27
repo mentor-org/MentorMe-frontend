@@ -27,7 +27,7 @@ Preloader.propTypes = {
 
 Preloader.defaultProps = {
     type: null,
-    style: null,
+    style: '',
     height: null,
     width: null,
     color: null

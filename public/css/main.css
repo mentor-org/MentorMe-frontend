@@ -1,4 +1,5 @@
 @import url('./modules/_normalize.css');
+@import url('./modules/_grid.scss');
 @import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
 
 body {
@@ -14,6 +15,13 @@ a {
   cursor: pointer;
 }
 
+.logo h3 {
+  color: #5887F9;
+  margin: 20px;
+  margin-left: 40px !important;
+  font-size: 1.8em;
+}
+
 .home {
   display: block;
   position: absolute;
@@ -21,16 +29,30 @@ a {
   left: 0;
   bottom: 0;
   right: 0;
-  background-image: url('../img/home.jpg');
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  background-position: center;
-  background-size: cover;
 }
 
 .home h2 {
   font-size: 2.5em;
 }
+
+.home .flex:nth-of-type(2) {
+  position: relative;
+}
+
+.home .btn {
+  padding: 1em 3em;
+  color: #5887F9;
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, .5);
+}
+
+.align-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 .d-flex {
   display: flex;
@@ -40,6 +62,7 @@ a {
 
 .flex {
   flex: 1;
+  position: relative;
 }
 
 .flex:nth-of-type(1) {
@@ -113,9 +136,9 @@ button {
   margin: .7em auto;
   border-radius: 5px;
   border: none;
-  padding: 1.8em 4em;
+  padding: 1.2em 4em;
   outline: none;
-  font-size: .7em;
+  font-size: .9em;
   color: #5887F9;
   font-weight: bold;
   background: #fff;
@@ -155,10 +178,6 @@ select {
   outline: none;
 }
 
-.login input {
-  text-align: center;
-}
-
 .extra a {
   color: rgba(255, 255, 255, .4);
   text-decoration: none;
@@ -185,5 +204,174 @@ select {
   and (max-device-width: 568px) {
     .d-flex .flex:nth-of-type(1) {
       display: none !important ;
+    }
+}
+
+/* Homepage */
+.centre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 68px;
+  height: 100vh;
+  background: #fff;
+  z-index: 105;
+  box-shadow: 5px 0 10px -3px #888;
+}
+
+nav #logo {
+  width: 68px;
+  height: 68px;
+  border-bottom: 1px solid #eee;
+  font-size: 22px;
+  color: #5574F7;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+nav ul li a {
+  display: block;
+  width: 68px;
+  height: 68px;
+  font-size: 18px;
+  color: #444;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+nav ul li a svg {
+  transition: 0.3s ease;
+}
+
+nav ul li a:hover {
+  box-shadow: inset 4px 0 0 #5574F7;
+}
+
+nav ul li a:hover svg {
+  margin-left: 4px;
+  color: #5574F7;
+}
+
+nav ul:last-child {
+  border-bottom: none;
+}
+
+.navBottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.you {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: none;
+  background: transparent;
+  width: 68px;
+  height: 68px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  padding: 0;
+}
+
+.you img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+.you:hover {
+  box-shadow: inset 4px 0 0 #5574F7;
+}
+
+.you:hover img {
+  margin-left: 4px;
+}
+
+
+#wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 68px;
+}
+
+#container #wrapper {
+  padding-top: 20px;
+}
+
+@media only screen and (max-width: 835px) {
+  #wrapper {
+      width: 100%;
+      box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  a[data-balloon]:before,
+    a[data-balloon]:after,
+    button[data-balloon]:before,
+    button[data-balloon]:after {
+        display: none;
+    }
+
+    #wrapper {
+        padding-top: 0 !important;
+        padding-left: 10px !important;
+        padding-right: 10px;
+    }
+
+    nav {
+        top: initial;
+        bottom: 0;
+        width: 100%;
+        height: 68px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    nav #logo {
+        display: none;
+    }
+
+    nav .nav {
+        display: flex;
+    }
+
+    nav .nav li {
+        flex: 1;
+    }
+
+    nav .nav li a,
+    nav .nav li button {
+        width: 100% !important;
+    }
+
+    nav .nav li a:hover,
+    nav .nav li button:hover {
+        box-shadow: none;
+    }
+
+    nav .nav li a:hover svg,
+    nav .nav li button:hover svg {
+        margin-left: 0;
+    }
+
+    .you {
+      display: none;
     }
 }

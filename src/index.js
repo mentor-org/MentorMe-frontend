@@ -2,8 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
+import refreshPage from './utils/refreshPage';
 import * as serviceWorker from './serviceWorker';
 import store from './store/configureStore';
+
+refreshPage(store);
 
 const renderApp = (Root) => {
   render(
