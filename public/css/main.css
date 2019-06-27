@@ -27,3 +27,163 @@ a {
   background-position: center;
   background-size: cover;
 }
+
+.home h2 {
+  font-size: 2.5em;
+}
+
+.d-flex {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.flex {
+  flex: 1;
+}
+
+.flex:nth-of-type(1) {
+  width: 100%;
+  position: relative;
+}
+
+.image-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70%;
+  width: 80%;
+  margin: auto;
+  background: url('../img/teach.svg');
+  background-origin: content-box;
+  background-size: cover;
+  background-position: center;
+}
+
+.flex:nth-of-type(2) {
+  background: linear-gradient(#5574F7, #60C3FF);
+}
+
+.form-container {
+  width: 70%;
+  margin: 3em auto;
+}
+
+.form-container h3 {
+  font-size: 2em;
+  text-align: center;
+  font-family: inherit;
+  color: #fff;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-bottom: .5em;
+  color: rgba(255, 255, 255, .8);
+  font-size: .7em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+form {
+  margin-top: 5em;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  margin: .7em 0;
+}
+
+.form-group input {
+  background: inherit;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  width: 100%;
+  padding: 1em 0;
+  color: #fff;
+  margin-bottom: 1em;
+}
+
+button {
+  cursor: pointer;
+  margin: .7em auto;
+  border-radius: 5px;
+  border: none;
+  padding: 1.8em 4em;
+  outline: none;
+  font-size: .7em;
+  color: #5887F9;
+  font-weight: bold;
+  background: #fff;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  transition: all .3s ease-in;
+
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+}
+
+.user-image {
+  width: 120px;
+  height: 120px;
+  background-image: url('../img/avatar.jpg');
+  background-size: cover;
+  background-position: top center;
+  border-radius: 5px;
+  margin: 1em auto;
+}
+
+.login input::placeholder, .signup input::placeholder {
+  color: rgba(255, 255, 255, .2);
+}
+
+.login input:focus, .signup input:focus, .signup:active {
+  background: inherit;
+}
+
+select {
+  margin-bottom: .6em;
+  color: ghostwhite;
+  background: inherit;
+  outline: none;
+}
+
+.login input {
+  text-align: center;
+}
+
+.extra a {
+  color: rgba(255, 255, 255, .4);
+  text-decoration: none;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+  float: right;
+}
+
+.foot {
+  margin: 10em auto;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: .9em;
+}
+
+@media only screen 
+  and (max-device-width: 568px) {
+    .d-flex .flex:nth-of-type(1) {
+      display: none !important ;
+    }
+}
