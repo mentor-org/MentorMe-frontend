@@ -72,18 +72,14 @@ export const auth = (type, user, history) => async (dispatch) => {
 
       dispatch(authenticating());
       const response = await authAPI(type, user);
-      localStorage.setItem('jwtToken', response.data.data.token);
+      localStorage.setItem('jwtToken', response.data.user.token);
 
       const dispatchType = type === 'signup' ? signupSuccess : signinSuccess;
-      dispatch(dispatchType(response.data.data.user));
+      dispatch(dispatchType(response.data.user));
       if (type === 'signup') {
           toastr.success('Success', 'Successfully registered');
       }
-      if (response.data.data.user.isAdmin === true) {
-          history.push('/dashboard');
-      } else {
-          history.push('/home');
-      }
+      history.push('/');
   } catch (error) {
       const errorResponse = errorHandler(error);
       const dispatchType = type === 'signup' ? signupFailure : signinFailure;
@@ -98,7 +94,7 @@ export const authenticateUser = () => async (dispatch) => {
   
       const res = jwt_decode(localStorage.getItem('jwtToken'));
   
-      dispatch(authenticationSuccess(res.user));
+      dispatch(authenticationSuccess(res));
   } catch (error) {
       const errorResponse = errorHandler(error);
   

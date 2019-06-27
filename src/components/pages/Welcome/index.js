@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+// import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import LandingPage from './LandingPage';
+import Home from '../Home';
 
-const Welcome = () => {
+const Welcome = ({ isAuthenticated }) => {
   return (
-    <div className="container home"></div>
+    <Fragment>
+      {isAuthenticated ? <Home /> : <LandingPage />}
+    </Fragment>
   );
 };
 
-export default Welcome;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Welcome);

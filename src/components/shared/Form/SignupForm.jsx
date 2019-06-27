@@ -3,13 +3,12 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
+import { Link } from 'react-router-dom';
 import { authPropTypes } from '../../../helpers/proptypes';
 import RenderInput from '../FormComponents/RenderInput';
 import { auth } from '../../../actions/auth';
-import { isEmpty } from 'lodash';
+import classNames from 'classnames';
 import countries from '../Countries';
-
-const emailRegex = RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
 class SignupForm extends Component {
     constructor(props) {
@@ -21,27 +20,10 @@ class SignupForm extends Component {
             type: 'mentee',
             country: '',
             password: '',
-            formErrors: {
-                fullName: '',
-                email: '',
-                country: '',
-                password: '',
-            },
+            errors: {},
             formValid: false,
         };
 
-    }
-
-    isValid(formErrors) {
-        let valid;
-
-        Object.values(formErrors).forEach(val => {
-            val.length > 0 && (valid = false);
-        });
-
-        this.setState({
-            formValid: valid
-        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -54,32 +36,8 @@ class SignupForm extends Component {
         e.preventDefault();
         const { name, value } = e.target;
 
-        let { formErrors } = this.state;
-
-        switch (name) {
-            case "fullName":
-                formErrors.fullName =
-                    value.length < 3 ? "Full name is required": "";
-                break;
-            case "type":
-                formErrors.type =
-                    isEmpty(value) ? "Type is required": "";
-                break;
-            case "email":
-                formErrors.email =
-                    emailRegex.test(value) ? "": "Invalid email address";
-                break;
-            case "password":
-                formErrors.password =
-                    value.length < 6 ? "Minimum of 6 characters required": "";
-                break;
-            
-            default:
-                break;
-        }
-
         this.setState({
-            formErrors, [name]: value
+            [name]: value
         });
 
         if (e.target.tagName === 'SELECT') {
@@ -117,13 +75,12 @@ class SignupForm extends Component {
 
     componentDidMount() {
         if (this.props.isAuthenticated) {
-            this.props.history.push('/');
+            return this.props.history.push('/');
         }
     }
 
     render() {
-        const { isLoading } = this.props;
-        const { formErrors, formValid } = this.state;
+        const { isLoading, errors } = this.props;
 
         return (
             <Fragment>
@@ -134,12 +91,12 @@ class SignupForm extends Component {
                             label="Full Name"
                             id="fullName"
                             type="text"
-                            className="form-control"
+                            className={classNames('form-control', { 'error': errors.fullName })}
                             placeholder="John Doe"
                             value={this.state.fullName}
                             handleChange={this.handleChange.bind(this)}
                             onFocus={this.handleFocus.bind(this)}
-                            error={formErrors.fullName}
+                            error={errors.fullName}
                         />
                     </div>
                     <div className="form-group">
@@ -155,12 +112,12 @@ class SignupForm extends Component {
                             label="Email Address"
                             id="email"
                             type="email"
-                            className="form-control"
+                            className={classNames('form-control', { 'error': errors.email })}
                             placeholder="example@gmail.com"
                             value={this.state.email}
                             handleChange={this.handleChange.bind(this)}
                             onFocus={this.handleFocus.bind(this)}
-                            error={formErrors.email}
+                            error={errors.email}
                         />
                     </div>
                     <div className="form-group">
@@ -177,12 +134,12 @@ class SignupForm extends Component {
                             label="Password"
                             id="password"
                             type="password"
-                            className="form-control"
+                            className={classNames('form-control', { 'error': errors.password })}
                             placeholder="**********"
                             value={this.state.password}
                             handleChange={this.handleChange.bind(this)}
                             onFocus={this.handleFocus.bind(this)}
-                            error={formErrors.password}
+                            error={errors.password}
                         />
                     </div>
     
@@ -199,6 +156,10 @@ class SignupForm extends Component {
                             : 'Register'}
                     </button>
                 </form>
+                
+                <div className="foot">
+                  <Link to="/auth/login">Login</Link>
+                </div>
             </Fragment>
         );
     }
