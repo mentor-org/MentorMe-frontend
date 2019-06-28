@@ -38,12 +38,12 @@ class Auth extends Component {
         return (
             <Fragment>
                 <div className="d-flex">
-                  <div className="flex">
+                  <div className="half">
                     <div className="image-section">
             
                     </div>
                   </div>
-                    <div className="flex">
+                    <div className="half">
                         <div className="form-container">
                             <h3>{ title }</h3>
                             { field }
