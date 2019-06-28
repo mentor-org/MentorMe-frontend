@@ -145,14 +145,16 @@ class SignupForm extends Component {
     
                     <button className="btn btn-primary" disabled={isLoading} type="submit">
                         {isLoading === true ?
-                            <Preloader
-                                type="button"
-                                // eslint-disable-next-line
-                                style="TailSpin"
-                                height={12}
-                                width={12}
-                                color="blue"
-                            />
+                                <div className="text-center" style={{ margin: 'auto' }}>
+                                    <Preloader
+                                            type="button"
+                                            // eslint-disable-next-line
+                                            style="TailSpin"
+                                            height={12}
+                                            width={12}
+                                            color="blue"
+                                        />
+                                    </div>
                             : 'Register'}
                     </button>
                 </form>

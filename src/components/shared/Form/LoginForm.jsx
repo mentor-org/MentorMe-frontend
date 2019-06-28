@@ -59,17 +59,17 @@ class LoginFrom extends Component {
     }
 
     render() {
-        const { isLoading } = this.props;
-        const { errors } = this.state;
+        const { isLoading, errors } = this.props;
 
         return (
             <Fragment>
-                { errors === 'string' ? 
-                    <div className="alert-form">
-                        <p>{errors}</p>
-                    </div> : ''
-                }
                 <form className="login" onSubmit={this.handleSubmit.bind(this)} noValidate>
+                    { typeof errors === 'string' ? 
+                    <div className="bg-red border-l-4 border-red-600 text-red-500 p-2" role="alert">
+                        <p className="font-bold">Error</p>
+                        <p className="">{errors}</p>
+                    </div> : ''
+                    }
                     <div className="form-group">
                         <RenderInput
                             name="email"

@@ -7,7 +7,7 @@ import './Preloader.scss';
 const Preloader = ({ type, style, height, width, color }) => {
     const className = classNames({
         'main-preloader': type === 'page',
-        '': type === 'button'
+        'text-center': type === 'button'
     });
 
     return (
