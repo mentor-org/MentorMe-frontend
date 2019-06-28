@@ -6,10 +6,13 @@ import {
   SINGLE_QUESTION,
   FETCH_BY_TAG,
   REPLY_QUESTION,
-  GET_ALL_REPLIES
+  GET_ALL_REPLIES,
+  FETCH_USERS,
+  FETCH_USER
 } from '../constant/actionTypes';
 import { toastr } from 'react-redux-toastr';
 import instance from '../config/axios';
+
 
 export const fetching = () => ({
   type: IS_FETCHING
@@ -40,9 +43,19 @@ export const fetchByTag = questions => ({
   payload: questions
 });
 
+export const fetchUsers = users => ({
+  type: FETCH_USERS,
+  payload: users
+});
+
 export const fetchRepliesSuccess = id => ({
   type: GET_ALL_REPLIES,
   payload: id
+});
+
+export const fetchSingleUser = user => ({
+  type: FETCH_USER,
+  payload: user
 });
 
 export const fetchQuestions = () => async (dispatch) => {
@@ -67,21 +80,25 @@ export const fetchReplies = (id) => async (dispatch) => {
   }
 };
 
-export const editQuestion = (id, question) => async (dispatch) => {
+export const editQuestion = (id, question, history) => async (dispatch) => {
   try {
     dispatch(fetching());
 
     await instance.post(`/questions/${id}`, question);
+    history.push(`/question/${id}`);
+    toastr.success('Success', 'Edit successful');
   } catch (error) {
     dispatch(fetchFailure(error.response.data.errors));
   }
 };
 
-export const reply = (id, reply) => async (dispatch) => {
+export const reply = (id, reply, history) => async (dispatch) => {
   try {
     dispatch(fetching());
 
     const response = await instance.post(`/questions/${id}/replies`, reply);
+    history.push(`/question/${id}`);
+    toastr.success('Success', 'Reply logged');
     dispatch(replySuccess(response.data.payload));
   } catch (error) {
     dispatch(fetchFailure(error.response.data.errors));
@@ -97,7 +114,7 @@ export const fetchQuestion = (id) => async (dispatch) => {
   try {
     dispatch(fetching());
 
-    const response = await instance.get(`/questions/${id}`);
+    const response = await instance.get(`/questions/${id}/question`);
     dispatch(fetchSingleQuestion(response.data.payload));
   } catch (error) {
     dispatch(fetchFailure(error));
@@ -119,10 +136,32 @@ export const addQuestion = (question) => async (dispatch) => {
   try {
     dispatch(fetching());
     
-    const response = await instance.post('/questions', question);
-    toastr.success('Success', 'Question Logged');
-
+    const response = await instance.post('/questions', question);  
     dispatch(newQuestion(response.data));
+    toastr.success('Success', 'Question added successfully');
+  } catch (error) {
+    dispatch(fetchFailure(error.response.data.errors));
+  }
+};
+
+
+export const getUsers = () => async (dispatch) => {
+  try {
+    dispatch(fetching());
+    
+    const response = await instance.get('/users');
+    dispatch(fetchUsers(response.data.payload.rows));
+  } catch (error) {
+    dispatch(fetchFailure(error.response.data.errors));
+  }
+};
+
+export const getSingleUser = (id) => async (dispatch) => {
+  try {
+    dispatch(fetching());
+
+    const response = await instance.get(`/profiles/${id}`);
+    dispatch(fetchSingleUser(response.data.payload));
   } catch (error) {
     dispatch(fetchFailure(error.response.data.errors));
   }

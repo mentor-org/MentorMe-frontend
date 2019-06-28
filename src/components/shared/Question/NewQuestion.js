@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import RenderInput from '../FormComponents/RenderInput';
 import Preloader from '../Preloader/Preloader';
 import { addQuestion } from '../../../actions/question';
@@ -49,7 +50,7 @@ class NewQuestion extends Component {
       description
     };
 
-    this.props.addQuestion(questionValues);
+    this.props.addQuestion(questionValues, this.props.history);
   }
 
   handleFocus(e) {
@@ -126,4 +127,4 @@ const mapStateToProps = state => ({
   errors: state.question.errors,
 });
 
-export default connect(mapStateToProps, { addQuestion })(NewQuestion);
+export default connect(mapStateToProps, { addQuestion })(withRouter(NewQuestion));

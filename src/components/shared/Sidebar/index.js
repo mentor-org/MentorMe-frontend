@@ -20,7 +20,7 @@ const Sidebar = (props) => {
                         </Link>
                     </li>
                     <li>
-                        <Link className="centre" to="#" data-balloon-pos="right" data-balloon="People">
+                        <Link className="centre" to="/people" data-balloon-pos="right" data-balloon="People">
                             <span className="icon ion-ios-people"></span>
                         </Link>
                     </li>

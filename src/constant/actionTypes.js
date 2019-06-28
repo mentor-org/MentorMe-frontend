@@ -19,4 +19,5 @@ export const FETCH_BY_TAG = 'FETCH_BY_TAG';
 export const EDIT_QUESTION_SUCCESS = 'EDIT_QUESTION_SUCCESS';
 export const REPLY_QUESTION = 'REPLY_QUESTION';
 export const GET_ALL_REPLIES = 'GET_ALL_REPLIES';
-
+export const FETCH_USERS = 'FETCH_USERS';
+export const FETCH_USER = 'FETCH_USER';

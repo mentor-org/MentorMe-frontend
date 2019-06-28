@@ -8,7 +8,7 @@
 
 
 body {
-  background: #fff;
+  background: #F2F2F2;
   color: #24292e;
   font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
   overflow-x: hidden;
@@ -471,7 +471,7 @@ nav ul:last-child {
     position: fixed;
     top: 0;
     left: -350px;
-    background: #222;
+    background: #fff;
     width: 350px;
     color: #fff !important;
     height: 100vh;
@@ -502,7 +502,7 @@ nav ul:last-child {
 .meContainer .section ul li a,
 .meContainer .section ul li button {
     text-decoration: none;
-    color: #444;
+    color: #E0E0E0;
     padding: 15px 25px;
     display: block;
     position: relative;

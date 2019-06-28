@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ReplyForm from '../Form/ReplyForm';
 import SingleReply from './SingleReply';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchReplies } from '../../../actions/question';
 
 
@@ -16,7 +17,7 @@ class Reply extends Component {
 
   componentDidMount() {
     const { id } = this.props;
-    this.props.fetchReplies(id);
+    this.props.fetchReplies(id, this.props.history);
   }
 
   render() {
@@ -42,4 +43,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, { fetchReplies })(Reply);
+export default connect(mapStateToProps, { fetchReplies })(withRouter(Reply));

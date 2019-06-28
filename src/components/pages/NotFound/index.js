@@ -10,7 +10,7 @@ const NotFound = () => {
       <div className="relative">
         <div className="not-found">
           <div className="center-wrap text-center">
-            <h1 className="text-6xl text-indigo-700 mb-5">Page Not Found</h1>
+            <h1 className="text-4xl text-indigo-700 mb-5">Page Not Found</h1>
             <Link to="/" className="btn">Go Home</Link>
           </div>
         </div>

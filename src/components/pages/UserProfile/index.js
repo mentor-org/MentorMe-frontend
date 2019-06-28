@@ -1,14 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Sidebar from '../../shared/Sidebar';
+import { getSingleUser } from '../../../actions/question';
 
 
-
-class Profile extends Component {
+class UserProfile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      toggle: false,
       show: false,
     };
 
@@ -23,21 +24,27 @@ class Profile extends Component {
     };
   }
 
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.props.getSingleUser(id);
+  }
+
 
   render() {
+    const { user } = this.props;
     return (
       <Fragment>
         <Sidebar show={this.state.show} showSidebar={this.showSidebar} />
-
+        
         <div id="container">
           <div id="wrapper">
             <div className="container">
             <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 shadow-lg bg-white rounded-lg p-6 h-48 h-full">
               <img className="h-16 w-16 rounded-full mx-auto" src="https://randomuser.me/api/portraits/women/17.jpg" alt="avatar" />
                 <div className="text-center mt-16">
-                  <h2 className="text-lg">{this.props.user.fullName}</h2>
-                  <div className="text-purple-500">{this.props.user.country}</div>
-                  <div className="text-gray-600">{this.props.user.email}</div>
+                  <h2 className="text-lg">{user.fullName}</h2>
+                  <div className="text-purple-500">{user.country}</div>
+                  <div className="text-gray-600">{user.email}</div>
                   <div className="text-gray-600">(555) 765-4321</div>
                 </div>
              </div>
@@ -55,7 +62,8 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user
+  user: state.question.user
 });
 
-export default connect(mapStateToProps)(Profile);
+
+export default connect(mapStateToProps, { getSingleUser })(UserProfile);

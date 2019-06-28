@@ -6,11 +6,15 @@ import {
   SINGLE_QUESTION,
   FETCH_BY_TAG,
   REPLY_QUESTION,
-  GET_ALL_REPLIES
+  GET_ALL_REPLIES,
+  FETCH_USERS,
+  FETCH_USER
 } from '../constant/actionTypes';
 
 const initialState = {
   isFetching: false,
+  users: [],
+  user: [],
   errors: {},
   question: {},
   questions: [],
@@ -62,6 +66,18 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         replies: action.payload
+      };
+    case FETCH_USERS:
+      return {
+        ...state,
+        isFetching: false,
+        users: action.payload
+      };
+    case FETCH_USER:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.payload
       };
     default:
       return state;

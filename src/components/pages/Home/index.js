@@ -76,7 +76,7 @@ class Home extends Component {
 
         <div id="container">
           <div id="wrapper">
-            <div className="container">
+            <div className="container mx-auto">
               <h2 className="feed-tag">Question Feed</h2>
               <div className="flex">
                 <div>
@@ -86,10 +86,10 @@ class Home extends Component {
                       })}
                   </select>
                 </div>
-                <button className="bg-transparent hover:bg-teal text-teal-dark font-semibold hover:text-white py-2 px-4 border border-teal hover:border-transparent rounded mr-2" data-modal="question" onClick={this.handleModal}>Create Question</button>
+                <button className="bg-transparent hover:bg-indigo-500 border-indigo-500 text-indigo-dark font-medium hover:text-white py-2 px-4 border hover:border-indigo-600 rounded mr-2" data-modal="question" onClick={this.handleModal}>Create Question</button>
               </div>
             </div>
-            <div className="container">
+            <div className="container mx-auto">
               <div className="flex flex-wrap -mx-1 lg:-mx-4">
                 {this.props.questions.map((question, index) => {
                   return <Question key={index} id={question.id} question={question} />;
